@@ -10,6 +10,19 @@ st.set_page_config(layout="wide")
 
 
 def main(sql_object, new_orders_df):
+    """
+    This is the main function which publishes the app.
+
+    Parameters
+    ----------
+    sql_object: utilities.sql.SQL object.
+        This class is used for generating the sql database and committing/fetching values to/from it.
+
+    new_orders_df: Pandas dataframe.
+        Pandas dataframe which will collect new orders.
+
+    """
+
     st.title("McKesson Web App")
 
     menu = ["Home", "Login", "SignUp"]
@@ -27,29 +40,3 @@ if __name__ == "__main__":
     sql_object = SQL(sql_connection=conn)
     new_orders_df = pd.DataFrame(columns=["DATE", "CUST_ID", "ORDR_QTY"])
     main(sql_object=sql_object, new_orders_df=new_orders_df)
-
-
-# with st.form(key="my_form"):
-#     username = st.text_input("Username")
-#     password = st.text_input("Password")
-#     st.form_submit_button("Login")
-#
-# st.title("This is a Test")
-#
-# st.text_area("What is your costumer ID?")
-#
-# st.balloons()
-#
-# st.metric("My metric", 42, 2)
-#
-# CUST_ID = st.number_input("Pharmacy ID", 0, 99)
-#
-# ORDER_QTY = st.number_input("Order Quantity", 1)
-#
-# st.success("Thanks for submitting the order!")
-#
-# DATE = st.date_input("Today's Date")
-
-
-
-

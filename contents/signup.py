@@ -2,6 +2,15 @@ import streamlit as st
 
 
 def publish(sql_object):
+    """
+    Publish text in the signup page, and add credentials to a sql database.
+
+    Parameters
+    ----------
+    sql_object: utilities.sql.SQL object.
+        This class is used for generating the sql database and committing/fetching values to/from it.
+
+    """
     st.subheader("Create an Account")
     new_user = st.text_input('Username')
     new_passwd = st.text_input('Password', type='password')

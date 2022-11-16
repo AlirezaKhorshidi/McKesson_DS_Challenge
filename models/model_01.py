@@ -10,6 +10,25 @@ import numpy as np
 
 
 def build_and_train_generalized_linear_model(X_train, y_train, verbose=False):
+    """
+    Build and train a generalized linear model.
+
+    Parameters
+    ----------
+    X_train: list of lists.
+        Each list corresponds to a data point
+
+    y_train: list.
+        List of floats, each float corresponding to a data point.
+
+    verbose: bool.
+        Whether to spit out more information or not.
+
+    Returns
+    ----------
+    pipe: sklearn machine-learning trained pipeline
+
+    """
     if verbose:
         print(f"len(X_train) = {len(X_train)}")
         print(f"X_train = {X_train}")
@@ -43,7 +62,18 @@ def build_and_train_generalized_linear_model(X_train, y_train, verbose=False):
 
 
 class Model(object):
+    """
+    Machine learning model with fit and predict methods.
 
+    Parameters
+    ----------
+    path_to_csv: str.
+        Path to the csv file of training dataset
+
+    cust_id: int.
+        Customer ID.
+
+    """
     def __init__(self, path_to_csv, cust_id):
         df = pd.read_csv(filepath_or_buffer=path_to_csv, parse_dates=['DATE'], low_memory=False)
         df = df[df.ORDER_QTY < 20000]
@@ -53,8 +83,37 @@ class Model(object):
         self.pipe = self.fit(X, y)
 
     def fit(self, X, y):
+        """
+        Fit the model to the dataset.
+
+        Parameters
+        ----------
+        X: list of lists.
+            Each list corresponds to a data point
+
+        y: list.
+            List of floats, each float corresponding to a data point.
+
+        Returns
+        ----------
+        pipe: sklearn machine-learning trained pipeline
+
+        """
         self.pipe = build_and_train_generalized_linear_model(X, y, verbose=False)
         return self.pipe
 
     def predict(self, X):
+        """
+          Predict the model output for the input value.
+
+          Parameters
+          ----------
+          X: list.
+              List corresponding to a data point
+
+          Returns
+          ----------
+          Float corresponding to a prediction.
+
+          """
         return int(round(self.pipe.predict([[X]])[0]))

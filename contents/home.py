@@ -2,6 +2,10 @@ import streamlit as st
 
 
 def publish():
+    """
+    Publish text in the home page.
+
+    """
     st.subheader("Home Page")
     st.markdown("""
     <style>

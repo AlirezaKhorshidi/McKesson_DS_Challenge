@@ -4,6 +4,20 @@ from models import ForecastEnsemble
 
 
 def publish(sql_object, new_orders_df):
+
+    """
+    Publish text in the login page, and add new orders to a pandas dataframe.
+
+    Parameters
+    ----------
+    sql_object: utilities.sql.SQL object.
+        This class is used for generating the sql database and committing/fetching values to/from it.
+
+    new_orders_df: Pandas dataframe.
+        Pandas dataframe which will collect new orders.
+
+    """
+
     st.subheader("Login Page")
 
     username = st.sidebar.text_input("Username")
