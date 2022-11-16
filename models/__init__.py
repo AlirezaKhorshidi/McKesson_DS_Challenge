@@ -15,8 +15,9 @@ class ForecastEnsemble(object):
     def __init__(self, cust_id):
         self.models = []
         import os
-        print("path =", os.getcwd())
         self.models.append(Model01(path_to_csv="models/Dataset.csv", cust_id=cust_id))
+        # If another model is also going to be used for model prediction, it should be appended to the list
+        # (as above) here.
 
     def predict(self, price):
         """

@@ -67,7 +67,7 @@ def publish(sql_object, new_orders_df):
                             unsafe_allow_html=True)
 
                 CUST_ID = st.number_input("Pharmacy ID", 0)
-                PRICE_USD = st.number_input("Price", 0)
+                PRICE_USD = st.number_input("Price", min_value=0., step=1.,format="%.2f")
                 ensemble_model = ForecastEnsemble(cust_id=CUST_ID)
                 ORDER_QTY = ensemble_model.predict(price=PRICE_USD)
                 if st.button('Predict'):
